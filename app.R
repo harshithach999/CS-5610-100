@@ -9,7 +9,7 @@ library(ggplot2)
 breast_cancer <- read.csv("calc_case_description_train_set.csv")
 Breast_Cancer<-data.frame(breast_cancer)
 
-#setwd("/BreastCancerAnalysis")
+#setwd("harshithach999/CS-5610-100/calc_case_description_train_set.csv")
 
 # Define server function
 server <- function(input, output) {
