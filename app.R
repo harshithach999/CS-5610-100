@@ -1,6 +1,6 @@
 # Load libraries
 #Title : EDA on Breast Cancer
-#Team Members: Shreya, Harshitha
+#Team Members: "Shreya Kolanupaka, Harshitha Chollangi"
 
 library(shiny)
 library(ggplot2)
