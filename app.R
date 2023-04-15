@@ -77,6 +77,7 @@ ui <- dashboardPage(
       # third page content
       tabItem(tabName = "page2",
               h2("BreastCancer"),
+              #den.png included in the CS-5610-100
               tags$img(src="den.png"),
               tags$p("Click", a(href="https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=22516629", "here"), "to read full article.")
 )
