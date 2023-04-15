@@ -13,7 +13,7 @@ Breast_Cancer <- data.frame(breast_cancer)
 
 # setwd("/BreastCancerAnalysis")
 
-# Define server function
+# server function
 server <- function(input, output) {
   
   # Create a reactive data frame based on the input fields
@@ -42,13 +42,13 @@ server <- function(input, output) {
   
 }
 
-# Define UI function
+# UI function
 ui <- dashboardPage(
   
-  # Define dashboard header
+  # dashboard header
   dashboardHeader(title = "Breast Cancer Analysis"),
   
-  # Define dashboard sidebar
+  # dashboard sidebar
   dashboardSidebar(
     sidebarMenu(
       menuItem("Page 1", tabName = "page1", icon = icon("dashboard")),
@@ -56,10 +56,10 @@ ui <- dashboardPage(
     )
   ),
   
-  # Define dashboard body
+  # dashboard body
   dashboardBody(
     
-    # Define first page content
+    # first page content
     tabItems(
       tabItem(tabName = "page1",
               # Sidebar with input for pathology
@@ -74,7 +74,7 @@ ui <- dashboardPage(
       ),
 
       
-      # Define third page content
+      # third page content
       tabItem(tabName = "page2",
               h2("BreastCancer"),
               tags$img(src="den.png"),
