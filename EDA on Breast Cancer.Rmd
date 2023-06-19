@@ -1,13 +1,4 @@
----
-title: "EDA on Breast Cancer"
-author: "Shreya Kolanupaka, Harshitha Chollangi"
-date: "2023-02-14"
-output: word_document
----
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 ##**Motivation and OverView**
 
 Breast cancer is a heterogenous disease and it is the most common of all cancers which affects the women worldwide. It is one of the diseases with the highest number of cases and deaths worldwide. Breast Cancer are classified into two types Begnin and Malignant Tumours.  Benign tumors have a tendency to grow at a slow pace and do not have the ability to spread. Conversely, Malignant tumors have the capability to grow rapidly, invade and destroy the surrounding healthy tissues, and metastasize to other parts of the body. 
@@ -687,15 +678,3 @@ hist(treesize(Calc_rf),
 ```{r}
 plot(Calc_pred)
 ```
-
-
-
-
-
-
-
-
-
-
-
-
