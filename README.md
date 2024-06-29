@@ -8,8 +8,6 @@ outputs:
 A dropdown box is used to select the pathologic kind of cancer in page 1.
 The datasource link and few images of output in page 2.
 
-A dropdown box is used to select the pathologic kind of cancer.
-
 Output of Malignant cancer with respect to breast density:
 
 ![image](https://user-images.githubusercontent.com/77778544/232133870-c6dd09d8-f3f0-4c42-946a-df30a9765e30.png)
