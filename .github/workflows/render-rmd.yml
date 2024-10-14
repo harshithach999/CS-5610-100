@@ -5,12 +5,15 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write  # This grants write access to the repository
+
 jobs:
   render:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup R
         uses: r-lib/actions/setup-r@v2
@@ -27,7 +30,7 @@ jobs:
       - name: Render RMarkdown
         run: |
           R -e 'rmarkdown::render("EDA_ML_on_BreastCancer.Rmd")'
-      
+
       - name: Commit and push to GitHub Pages branch
         env:
           GIT_USER_EMAIL: ${{ secrets.GIT_USER_EMAIL }}
@@ -39,4 +42,3 @@ jobs:
           git add EDA_ML_on_BreastCancer.html
           git commit -m "Publish rendered HTML to GitHub Pages"
           git push origin gh-pages --force
-        
