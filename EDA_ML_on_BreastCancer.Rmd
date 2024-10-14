@@ -102,9 +102,9 @@ The Exploratory Data Analysis done on the Breast Cancer dataset helped us in vis
 
 #Loading Required Packages
 ```{r}
-#install.packages("treemap")
-#install.packages("randomForest")
-#install.packages("rpart.plot")
+install.packages("treemap")
+install.packages("randomForest")
+install.packages("rpart.plot")
 library(dplyr) 
 library(ggplot2)
 library(treemap)
@@ -113,7 +113,7 @@ library(caret)
 library(e1071)
 library(rpart)
 library(rpart.plot)
-#install.packages("ggcorrplot")
+install.packages("ggcorrplot")
 library(ggcorrplot)
 ```
 
