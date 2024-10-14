@@ -18,4 +18,4 @@ jobs:
        R -e 'install.packages("rmarkdown")'
    - name: Render RMarkdown
      run: |
-       R -e 'rmarkdown::render('CS-5610-100/EDA_ML_on_BreastCancer.Rmd')'
+       R -e 'rmarkdown::render("CS-5610-100/EDA_ML_on_BreastCancer.Rmd")'
