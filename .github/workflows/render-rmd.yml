@@ -29,10 +29,14 @@ jobs:
           R -e 'rmarkdown::render("EDA_ML_on_BreastCancer.Rmd")'
       
       - name: Commit and push to GitHub Pages branch
+        env:
+          GIT_USER_EMAIL: ${{ secrets.GIT_USER_EMAIL }}
+          GIT_USER_NAME: ${{ secrets.GIT_USER_NAME }}
         run: |
-          git config --global user.email "${{ secrets.harshitha.chollangi@gmail.com }}"
-          git config --global user.name "${{ secrets.harshithach999 }}"
+          git config --global user.email "${{ secrets.GIT_USER_EMAIL }}"
+          git config --global user.name "${{ secrets.GIT_USER_NAME }}"
           git checkout -b gh-pages
           git add EDA_ML_on_BreastCancer.html
           git commit -m "Publish rendered HTML to GitHub Pages"
           git push origin gh-pages --force
+        
