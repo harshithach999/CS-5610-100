@@ -124,8 +124,8 @@ library(ggcorrplot)
 #Calc Case description
 
 ```{r}
-CalcTrain <- read.csv("C:/R/calc_case_description_train_set.csv",stringsAsFactors = FALSE)
-CalcTest <- read.csv("C:/R/calc_case_description_test_set.csv",stringsAsFactors = FALSE)
+CalcTrain <- read.csv("calc_case_description_train_set.csv",stringsAsFactors = FALSE)
+CalcTest <- read.csv("calc_case_description_test_set.csv",stringsAsFactors = FALSE)
 ```
 
 ```{r}
@@ -222,8 +222,8 @@ head(CalcTest_Clean)
 
 ##Mass Case Description
 ```{r}
-MassTrain <- read.csv("C:/R/mass_case_description_train_set.csv",stringsAsFactors = FALSE)
-MassTest <- read.csv("C:/R/mass_case_description_test_set.csv",stringsAsFactors = FALSE)
+MassTrain <- read.csv("mass_case_description_train_set.csv",stringsAsFactors = FALSE)
+MassTest <- read.csv("mass_case_description_test_set.csv",stringsAsFactors = FALSE)
 ```
 
 
