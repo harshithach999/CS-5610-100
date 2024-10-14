@@ -105,6 +105,8 @@ The Exploratory Data Analysis done on the Breast Cancer dataset helped us in vis
 install.packages("treemap")
 install.packages("randomForest")
 install.packages("rpart.plot")
+install.packages("caret")
+install.packages("e1071")
 library(dplyr) 
 library(ggplot2)
 library(treemap)
