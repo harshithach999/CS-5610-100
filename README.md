@@ -1,10 +1,10 @@
-
 # CS-5610-100
 **Project Name:** EDA on Breast Cancer
 
- Developed machine learning models using R to analyze health data. Utilized exploratory data analysis (EDA), data mining techniques, and data visualization tools to extract meaningful insights from large medical datasets. Achieved high accuracy and improved early detection.
+Developed machine learning models using R to analyze health data. Utilized exploratory data analysis (EDA), data mining techniques, and data visualization tools to extract meaningful insights from large medical datasets. Achieved high accuracy and improved early detection.
 
-**Data Source:** Cancer Imaging Archive (TCIA) (https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=22516629)  
+**Data Source:** Cancer Imaging Archive (TCIA)  
+[Click here for the dataset](https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=22516629)  
 The datasets used for Breast cancer are included in this path: `harshithach999/CS-5610-100`.
 
 ### Data Description:
@@ -33,7 +33,6 @@ For further reading, you can refer to:
 - [NCBI Article 1](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7569667/)
 - [NCBI Article 2](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7349542/)
 
-
 **App Details:**  
 The `app.R` file is used to construct the Shiny app. Both the server and UI components are included in this file.
 
@@ -53,3 +52,9 @@ The `app.R` file is used to construct the Shiny app. Both the server and UI comp
 
 ---
 
+### View the Full Report:
+You can view the full analysis and rendered HTML of the EDA on Breast Cancer dataset directly via GitHub Pages by clicking the link below:
+
+**[View the Full Report on GitHub Pages](https://harshithach999.github.io/CS-5610-100/EDA_ML_on_BreastCancer.html)**
+
+---
