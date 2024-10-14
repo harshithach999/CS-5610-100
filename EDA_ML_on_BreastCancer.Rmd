@@ -1,0 +1,680 @@
+
+##**Motivation and OverView**
+
+Breast cancer is a heterogenous disease and it is the most common of all cancers which affects the women worldwide. It is one of the diseases with the highest number of cases and deaths worldwide. Breast Cancer are classified into two types Begnin and Malignant Tumours.  Benign tumors have a tendency to grow at a slow pace and do not have the ability to spread. Conversely, Malignant tumors have the capability to grow rapidly, invade and destroy the surrounding healthy tissues, and metastasize to other parts of the body. 
+
+Mass and calcifications are two important features of breast cancer that are often detected through mammography or other imaging technique. A mass is a lump or thickening of breast tissue that feels different from the surrounding tissue, while calcifications are tiny mineral deposits that appear as white spots on a mammogram
+
+Exploratory data analysis (EDA) plays a crucial  role in improving the diagnosis. This process can help us to identify the type of cancer present in a patient and also determines the various attributes needed for  developing a predictive model which could aid in early diagnosis and detection of cancer in patients. The predictive factors obtained through EDA can provide valuable information to guide the decision-making process for breast cancer treatment, particularly for patients at an early stage of the disease, where the tumor has not spread or grown aggressively.
+
+##**Related Work**
+
+The following resources were used as a reference in the project
+1. Lee, R., Gimenez, F., Hoogi, A. et al. A curated mammography data set for use in computer-aided detection and diagnosis research. Sci Data 4, 170177 (2017).
+2. Understanding Clinical Mammographic Breast Density Assessment: a Deep Learning Perspective
+Khorshid, Shler & Mohsin Abdulazeez, Adnan & Sallow, Amira. (2021). A Comparative Analysis and Predicting for Breast Cancer Detection Based on Data Mining Models. Asian Journal of Research in Computer Science. 10.9734/AJRCOS/2021/v8i430209. 
+3. Data Visualization https://www.analyticsvidhya.com/blog/2015/07/guide-data-visualization-r/
+  https://r-graph-gallery.com/index.html
+
+4. WHO Cancer https://www.who.int/news-room/fact-sheets/detail/cancer
+5. Exploratory Data Analysis on Breast cancer dataset about Survivability and Recurrence 
+6. Breast Cancer Diagnosis Using Machine Learning Algorithms: A Review by Mahdi Rezaei and Habibollah Danyali
+7. Random Forest classification https://www.r-bloggers.com/2021/04/random-forest-in-r/
+8. Shiny application Shiny - ExPanD: Explore Your Data Interactively
+  https://epirhandbook.com/en/dashboards-with-shiny.html
+
+##**Initial Questions**
+1. What are the types of abnormalities in cancer?
+2. What are the distribution of breast density in Calcification and mass case description?
+3. What is the frequency of different calcification types  and  mass shapes?
+4. What is the distribution of left and right breast images?
+5. What is the distribution of subtlety scores in both calcification and mass cases?
+6. What types of images are viewed in mammograms?
+7. Are there any missing values in the data sets that need to be addressed before analysis?
+8. Is there any correlation between features?
+
+##**Data Description** 
+
+The most common cancer in women is breast cancer. The National Cancer Institute (NCI) has one of the most extensive cancer imaging programs. The databases also include supporting data such as patient outcomes, treatment details, and image analyses.  
+
+In this paper, the breast cancer dataset for EDA is taken from https://www.cancerimagingarchive.net/ This CBIS-DDSM (Curated Breast Imaging Subset of DDSM) is an updated and standardized version of the  Digital Database for Screening Mammography (DDSM) .  The DDSM is a database of 2,620 scanned film mammography studies (https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=22516629). It contains normal, benign, and malignant cases with verified pathology information.Only clinical data is used for analysis by excluding the Mammogram images
+
+Based on the BIRADS (Breast Imaging Reporting and Data System) category, the dataset was divided into two sections: training and testing. This division was conducted separately for all mass cases and all calcification cases.  The testing set consisted of 20% of the cases, while the remaining cases were used for training. 
+ 
+The downloaded raw dataset is in the form of .csv files  The attributes in the dataset.  have both numerical and categorical values. Which includes 13  features - patient id, breast density, left or right breast, abnormality id, abnormality type, calc type, calc distribution, mass shape, mass margin, assessment, pathology, image view and subtlety.
+
+Patient ID: Character variable that refers to a unique patient id.  
+Breast density: Positive integer variable, which contains four levels of densities. 
+Left or Right breast: Categorical variable of the patient. 
+Abnormality type:  Categorical variable, contains information based on the characteristic and appearance of mammogram 
+Abnormality ID: Positive Integer, serves as a unique identifier for each abnormality in the dataset. 
+Calc type: Categorical variable; each calcification type is based on an abnormality type. 
+Calc distribution: Categorical variable, classified on the location of the breast. 
+Mass shape: Categorical variable, based on its abnormality type. 
+Mass margin: Categorical variable refers to the edge of a mass or lesion in the breast. 
+Assessment: Positive integer variable, which contains five levels of assessments 
+Pathology:  Categorical variable, type of cancer. 
+Image view : a character vector indicating the image view of the abnormality.
+Subtlety: Positive integer variable, on a scale from 1 to 5, based on the difficulty rating. 
+
+##**Exploratory Data analysis**
+
+Exploratory Data Analysis (EDA) is the primary stage of understanding data by presenting it visually using various tools  in data processing. Initially the raw datasets was imported on R studio by using the function to read .csv file and the required libraries such as dplyr ,  ggplot2,  ggcorrplot, caret, random forest and various other libraries were loaded. Next step includes the inspection of raw datasets using str() which is an in-built function in util package. Removed the unrelated attributes and missing values  to clean the data. This makes the process more efficient and accurate for visualization.
+After Data cleaning process, the next step is Data Exploration which involves  in having a closer look at the attributes and data by using the function summary() , in-built funtion. The size  of the dataset and the statistical summary of the numerical data are determined using this summary function as count, minimum, maximum, percentiles and standard deviation of numeric values. Lastly to tidy the data, Category  type  variables are encoded as factors for further analysis. 
+
+One of the primary objectives of this analysis is to create visualizations to determine which feature is most useful in distinguishing between malignant and benign tumors in breast cancer. To analyze and understand this features, dplyr package is used to create the frequency tables of breast cancer data insights. 
+
+#In this project, following are the visualizations are used using ggplot2 and treemap package
+**Histograms** - A histogram is used to study the distribution of one or several variables, hist() is applied to show the Frequency of breast density levels and subtlety levels  in both the Calcification  and mass descriptive cases 
+
+**Bar plot**  - Bar plots are used to display the relationship between a numeric and a categorical variable. These plots are mostly used for comparison. Here,  geom_bar() function  are applied  and  These plot displays the count for types of abnormalities, Breast types, image views, calcification types and distributions, mass shapes and margins and pathology. 
+
+**Horizontal bar plots**  -  Horizontal bar plots are useful when there are many categories to display and the labels are long. They can also be used to compare the values of multiple variables.  Just like vertical plots , In horizontal bar plots geom_bar() is applied  for feature types of calcification case descriptionand arranged in increasing order. There are 28 unique types in calcification.
+
+**Box plot** - are used to compare distribution of several groups using geom_boxplot() A box plot displays the median, quartiles, and outliers of the data in a simple and efficient manner. 
+
+**Density plot** - a density plot is a graphical representation of the distribution of a dataset. It shows the probability density function of the variable being plotted, which represents the likelihood of the data falling within a certain range of values. geom_density() is applied for feature assessment which consists of 5 levels and its count 
+
+**Pie chart** -  A pie chart is a circular chart used to display proportional data, where each slice of the pie represents a category.  geom_bar() and coord_polar() which are functions in ggplot2 are applied to features Mass shapes, Mass margins andCalcification distribution .
+
+##**Data Analysis** 
+
+In this step we perform analysis on more than one continuous variables where the variables can be correlated with each other. Correlation analysis is a statistical technique that is used to measure the strength and direction of the relationship between two variables using cor() which is from ggcorrplot  package.  The values range from -1 to 1, with 1 indicating a perfect positive correlation, 0 indicating no correlation, and -1 indicating a perfect negative correlation. 
+
+
+**Classification Algorithm**
+
+This step is crucial for the prediction in the dataset,Classification algorithms are a type of machine learning algorithm used for categorizing data into different classes or categories based on certain features or attributes. 
+
+**Random Forest Classification model**
+
+.Random Forest is a powerful algorithm that can handle high-dimensional data with correlated features and can also handle missing values. In  this project, Random forest algorithm is performed for Calcification Case description
+
+The initial stage of this process consists of training to the algorithm using randomforest() from random forest package. Here , the response type is pathology and remaining features are independent variables.  The subsequent stage entails utilizing the algorithm to make predictions, and finally, in the last stage, the accuracy and effectiveness of these predictions are evaluated. 
+
+After predicting values for test data set, confusion matrix is performed to know how the model is performed on the training data . It shows the number of true positives, false positives, true negatives, and false negatives for each class.
+
+##Narrative and Summary 
+
+The Exploratory Data Analysis done on the Breast Cancer dataset helped us in visualizing various aspects needed to determine  the high chance of probability in  Tumour is Benign Malignant.  The correlation plot showed the highest correlation between breast_density and assessment which falls on the positive number line between 1 and 0. The random forest model achieved an accuracy of 79% which is promising for predicting the pathology of breast calcification  in mammogram images  The model was able to identify some of the most important features for predicting malignancy, including , calcification type , calcification distribution  and breast density.
+
+
+
+#Loading Required Packages
+```{r}
+#install.packages("treemap")
+#install.packages("randomForest")
+#install.packages("rpart.plot")
+library(dplyr) 
+library(ggplot2)
+library(treemap)
+library(randomForest)
+library(caret)
+library(e1071)
+library(rpart)
+library(rpart.plot)
+#install.packages("ggcorrplot")
+library(ggcorrplot)
+```
+
+## R Markdown
+
+#Calc Case description
+
+```{r}
+CalcTrain <- read.csv("C:/R/calc_case_description_train_set.csv",stringsAsFactors = FALSE)
+CalcTest <- read.csv("C:/R/calc_case_description_test_set.csv",stringsAsFactors = FALSE)
+```
+
+```{r}
+CalcTrain <- subset(CalcTrain,select = -c(image.file.path,cropped.image.file.path,
+ROI.mask.file.path))
+CalcTest <- subset(CalcTest,select = -c(image.file.path,cropped.image.file.path,
+ROI.mask.file.path))
+```
+```{r}
+CalcTrain_Clean <- data.frame(CalcTrain)
+CalcTest_Clean <- data.frame(CalcTest)
+
+str(CalcTrain_Clean)
+str(CalcTest_Clean)
+```
+#Renaming columns
+```{r}
+CalcTrain_Clean <- CalcTrain_Clean %>% rename(breast_density = breast.density, 
+                                              left_or_right_breast = left.or.right.breast,
+                                              image_view = image.view, abnormality_type = abnormality.type, abnormality_id = abnormality.id,
+                                              calc_type = calc.type, calc_distribution = calc.distribution)
+
+CalcTest_Clean <- CalcTest_Clean %>% rename(breast_density = breast.density, 
+                                            left_or_right_breast = left.or.right.breast,
+                                            image_view = image.view, abnormality_type = abnormality.type, abnormality_id = abnormality.id,
+                                            calc_type = calc.type, calc_distribution = calc.distribution)
+```
+
+
+#Checking missing values
+```{r}
+getmode <- function(v) {
+  uniqv <- unique(v)
+  uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+
+```
+
+```{r}
+colSums(is.na(CalcTrain_Clean))
+```
+```{r}
+CalcTrain_Clean$calc_distribution[is.na(CalcTrain_Clean$calc_distribution)] <- getmode(CalcTrain_Clean$calc_distribution)
+CalcTrain_Clean$calc_type[is.na(CalcTrain_Clean$calc_type)] <- getmode(CalcTrain_Clean$calc_type)
+na.omit(CalcTrain_Clean)
+```
+
+```{r}
+colSums(is.na(CalcTrain_Clean))
+```
+```{r}
+colSums(is.na(CalcTest_Clean))
+```
+
+```{r}
+CalcTest_Clean$calc_distribution[is.na(CalcTest_Clean$calc_distribution)] <- getmode(CalcTest_Clean$calc_distribution)
+CalcTest_Clean$calc_type[is.na(CalcTest_Clean$calc_type)] <- getmode(CalcTest_Clean$calc_type)
+na.omit(CalcTest_Clean)
+```
+
+```{r}
+colSums(is.na(CalcTest_Clean))
+
+```
+#Summary Statistics
+```{r}
+summary(CalcTrain_Clean)
+summary(CalcTest_Clean)
+```
+
+#Setting Categorical variables
+```{r}
+CalcTrain_Clean$left_or_right_breast <- factor(CalcTrain_Clean$left_or_right_breast)
+CalcTrain_Clean$image_view <- factor(CalcTrain_Clean$image_view)
+CalcTrain_Clean$abnormality_type <- factor(CalcTrain_Clean$abnormality_type)
+CalcTrain_Clean$calc_type <- factor(CalcTrain_Clean$calc_type)
+CalcTrain_Clean$calc_distribution <- factor(CalcTrain_Clean$calc_distribution)
+CalcTrain_Clean$pathology <- factor(CalcTrain_Clean$pathology)
+```
+
+```{r}
+CalcTest_Clean$left_or_right_breast <- factor(CalcTest_Clean$left_or_right_breast)
+CalcTest_Clean$image_view <- factor(CalcTest_Clean$image_view )
+CalcTest_Clean$abnormality_type <- factor(CalcTest_Clean$abnormality_type)
+CalcTest_Clean$calc_type <- factor(CalcTest_Clean$calc_type)
+CalcTest_Clean$calc_distribution <- factor(CalcTest_Clean$calc_distribution)
+CalcTest_Clean$pathology <- factor(CalcTest_Clean$pathology)
+```
+
+```{r}
+head(CalcTrain_Clean)
+head(CalcTest_Clean)
+```
+
+##Mass Case Description
+```{r}
+MassTrain <- read.csv("C:/R/mass_case_description_train_set.csv",stringsAsFactors = FALSE)
+MassTest <- read.csv("C:/R/mass_case_description_test_set.csv",stringsAsFactors = FALSE)
+```
+
+
+```{r}
+MassTrain <- subset(MassTrain,select = -c(image.file.path,cropped.image.file.path,
+ROI.mask.file.path))
+
+MassTest <- subset(MassTest,select = -c(image.file.path,cropped.image.file.path,
+ROI.mask.file.path))
+
+```
+```{r}
+MassTrain_Clean <- data.frame(MassTrain)
+MassTest_Clean <- data.frame(MassTest)
+
+str(MassTrain_Clean)
+str(MassTrain_Clean)
+```
+
+```{r}
+MassTrain_Clean <- MassTrain_Clean %>% rename( left_or_right_breast = left.or.right.breast,
+                                              image_view = image.view, abnormality_id=abnormality.id, abnormality_type = abnormality.type,
+                                              mass_Shape = mass.shape, mass_margins = mass.margins)
+
+MassTest_Clean <- MassTest_Clean %>% rename( left_or_right_breast = left.or.right.breast,
+                                              image_view = image.view, abnormality_id=abnormality.id, abnormality_type = abnormality.type,
+                                              mass_Shape = mass.shape, mass_margins = mass.margins)
+```
+
+
+#Checking null values for Mass case 
+```{r}
+colSums(is.na(MassTrain_Clean))
+```
+```{r}
+
+MassTrain_Clean$mass_Shape[is.na(MassTrain_Clean$mass_Shape)] <- getmode(MassTrain_Clean$mass_Shape)
+
+MassTrain_Clean$mass_margins[is.na(MassTrain_Clean$mass_margins)] <- getmode(MassTrain_Clean$mass_margins)
+na.omit(MassTrain_Clean)
+```
+
+```{r}
+colSums(is.na(MassTrain_Clean))
+```
+```{r}
+colSums(is.na(MassTest_Clean))
+```
+```{r}
+MassTest_Clean$mass_margins[is.na(MassTest_Clean$mass_margins)] <- getmode(MassTest_Clean$mass_margins)
+na.omit(MassTest_Clean)
+```
+```{r}
+colSums(is.na(MassTest_Clean))
+```
+```{r}
+summary(MassTrain_Clean)
+summary(MassTest_Clean)
+```
+
+```{r}
+MassTrain_Clean$image_view <- factor(MassTrain_Clean$image_view)
+MassTrain_Clean$left_or_right_breast <- factor(MassTrain_Clean$left_or_right_breast)
+MassTrain_Clean$abnormality_type <- factor(MassTrain_Clean$abnormality_type)
+MassTrain_Clean$mass_margins <- factor(MassTrain_Clean$mass_margins)
+MassTrain_Clean$mass_Shape <- factor(MassTrain_Clean$mass_Shape)
+
+```
+
+```{r}
+MassTest_Clean$image_view <- factor(MassTest_Clean$image_view)
+MassTest_Clean$left_or_right_breast <- factor(MassTest_Clean$left_or_right_breast)
+MassTest_Clean$abnormality_type <- factor(MassTest_Clean$abnormality_type)
+MassTest_Clean$mass_margins <- factor(MassTest_Clean$mass_margins)
+MassTest_Clean$mass_Shape <- factor(MassTest_Clean$mass_Shape)
+```
+
+```{r}
+head(MassTrain_Clean)
+head(MassTest_Clean)
+```
+
+##Data Exploration
+#1. number of abnormalities in calc and mass
+```{r}
+data_insight_1 <- data.frame(
+  abnormality = c(CalcTrain_Clean$abnormality_type[1], MassTrain_Clean$abnormality_type[1]),
+  counts_of_abnormalities = c(nrow(CalcTrain_Clean), nrow(MassTrain_Clean))
+)
+
+```
+```{r}
+ggplot(data_insight_1, aes(x = abnormality, y = counts_of_abnormalities, fill = abnormality)) +
+  geom_bar(stat = "identity") +
+  labs(x = "Abnormality", y = "Counts of Abnormalities", title = "Types of Abnormalities of Cancer") +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+#2.Count of left and right breast in Calcification
+```{r}
+LR_breast <- data.frame(table(CalcTrain_Clean$left_or_right_breast)) %>%
+  setNames(c("Breast", "Count"))
+LR_breast
+
+```
+
+```{r}
+ ggplot(CalcTrain_Clean, aes(x = left_or_right_breast)) + 
+  geom_bar(fill = "#FFCC99") +
+  labs(title = "Distribution of Left or Right Breast in Calcification") +
+  xlab("Breast Side") +
+  ylab("Frequency")
+
+```
+#Count of left and right breast in Mass Description
+```{r}
+
+LR_breastM <- data.frame(table(MassTrain_Clean$left_or_right_breast)) %>%
+  setNames(c("Breast", "Count"))
+LR_breastM
+```
+```{r}
+ ggplot(MassTrain_Clean, aes(x = left_or_right_breast)) + 
+  geom_bar(fill = "#99CCCC") +
+  labs(title = "Distribution of Left or Right Breast in Mass") +
+  xlab("Breast Side") +
+  ylab("Frequency")
+```
+
+#3.Types of Calcification Cancer
+```{r}
+calc_type_count <- CalcTrain_Clean %>% 
+  group_by(calc_type) %>% 
+  summarize(count = n()) %>% 
+  mutate(calc_type = if_else(count < 5, "Other", calc_type)) %>% 
+  group_by(calc_type) %>% 
+  summarize(count = sum(count))
+
+```
+
+```{r}
+
+ggplot(calc_type_count, aes(x = count, y = reorder(calc_type, count))) +
+  geom_bar(stat = "identity", fill = "#69b3a2") +
+  labs(x = "Count", y = "Calcification Types") +
+  ggtitle("Calcification Types Count") +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+#Types of Mass shapes
+```{r}
+
+Mass.Shape <- data.frame(table(MassTrain_Clean$mass_Shape)) %>%
+  setNames(c("Mass_Shape", "Count"))
+Mass.Shape
+
+```
+```{r}
+ggplot(Mass.Shape, aes(x = "", y = Count , fill = Mass_Shape)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start = 0) +
+  labs(title = "Proportion of Mass Shape") +
+  theme_void() +
+  theme(legend.position = "right")
+
+```
+
+
+#4.Types of Calc distributions
+```{r}
+CalcDist <- data.frame(table(CalcTrain_Clean$calc_distribution)) %>%
+ setNames(c("calc_distribution", "calc_dist_counts"))
+CalcDist
+```
+```{r}
+ggplot(CalcDist, aes(x = "", y = calc_dist_counts, fill = calc_distribution)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start = 0) +
+  labs(title = "Proportion of Calcification Distribution") +
+  theme_void() +
+  theme(legend.position = "right")
+```
+#Types of Mass Margins
+```{r}
+Mass.Margins <- data.frame(table(MassTrain_Clean$mass_margins)) %>%
+                 setNames(c("mass_margins", "counts"))
+Mass.Margins
+```
+```{r}
+ggplot(Mass.Margins, aes(x = "", y = counts, fill = mass_margins)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start = 0) +
+  labs(title = "Proportion of Calcification Distribution") +
+  theme_void() +
+  theme(legend.position = "right")
+
+```
+
+
+#5.Levels of Breast Density
+```{r}
+breastdensity_Calc <- data.frame(table(CalcTrain_Clean$breast_density)) %>%
+                 setNames(c("levels", "counts"))
+
+breastdensity_Calc
+```
+
+```{r}
+hist(CalcTrain_Clean$breast_density,
+     main = "Count of Breast Density in Calcification",
+     xlab = "Breast Density",
+     col = "pink")
+```
+
+# Distribution of Calcification  Breast Density by Pathology in Calcification 
+```{r}
+
+ggplot(CalcTrain_Clean, aes(x = pathology, y = breast_density)) +
+  geom_boxplot(fill = "#69b3a2") +
+  labs(x = "Pathology", y = "Breast Density", 
+       title = "Distribution of Breast Density by Pathology")
+
+```
+
+#Levels of Breast density in Mass
+```{r}
+breastdensity_Mass <-  data.frame(table(MassTrain_Clean$breast_density)) %>%
+                 setNames(c("levels", "counts"))
+breastdensity_Mass
+```
+```{r}
+hist(MassTrain_Clean$breast_density,
+     main = "Count of Breast Density in Mass",
+     xlab = "Breast Density",
+     col = "orange")
+
+```
+```{r}
+ggplot(MassTrain_Clean, aes(x = pathology, y = breast_density)) +
+  geom_boxplot(fill = "#009999") +
+  labs(x = "Pathology", y = "Breast Density", 
+       title = "Distribution of Breast Density by Pathology in Mass")
+```
+
+
+#6.Assessments in Calcification case
+```{r}
+Assessment_Calc<- data.frame(table(CalcTrain_Clean$assessment)) %>%
+setNames(c("levels", "counts"))
+Assessment_Calc
+
+```
+```{r}
+ggplot(data = CalcTrain_Clean, aes(x = assessment)) +
+  geom_density(fill = "blue", alpha = 0.5) +
+  ggtitle("Density Plot of Assessment in Calcification")
+```
+
+#Assessment in Mass Description
+```{r}
+Assessment_Mass <- data.frame(table(MassTrain_Clean$assessment)) %>%
+setNames(c("levels", "counts"))
+Assessment_Mass
+```
+```{r}
+ggplot(data = MassTrain_Clean, aes(x = assessment)) +
+  geom_density(fill = "red", alpha = 0.5) +
+  ggtitle("Density Plot of Assessment in Mass")
+```
+
+
+#7.Subtlety rating
+```{r}
+subtlety_Calc<- data.frame(table(CalcTrain_Clean$subtlety)) %>%
+setNames(c("levels", "counts"))
+subtlety_Calc
+```
+
+
+```{r}
+
+ggplot(CalcTrain_Clean, aes(x = subtlety)) +
+  geom_histogram(binwidth = 1, fill = "#cccccc") +
+  labs(x = "Subtlety", y = "Frequency", 
+       title = "Distribution of Subtlety in Calcification")
+
+```
+#Subtlety rating in Mass
+```{r}
+Subtlety_Mass <- data.frame(table(MassTrain_Clean$subtlety)) %>%
+setNames(c("levels", "counts"))
+Subtlety_Mass
+```
+```{r}
+ggplot(MassTrain_Clean, aes(x = subtlety)) +
+  geom_histogram(binwidth = 1, fill = "#999999") +
+  labs(x = "Subtlety", y = "Frequency", 
+       title = "Distribution of Subtlety in Mass ")
+```
+
+
+#8.Types of Pathalogy in Calcification
+```{r}
+table(CalcTrain_Clean$pathology)
+```
+
+```{r}
+
+ggplot(CalcTrain_Clean, aes(x = pathology, fill = pathology)) +
+  geom_bar() +
+  scale_fill_manual(values = c("#0072B2", "#E69F00", "#009E73")) +
+  labs(title = "Distribution of Pathology in Calcification", x = "Pathology", y = "Count")
+
+
+```
+#Types of Pathalogy in Mass Case
+```{r}
+table(MassTrain_Clean$pathology)
+```
+```{r}
+ggplot(MassTrain_Clean, aes(x = pathology, fill = pathology)) +
+  geom_bar() +
+  scale_fill_manual(values = c("#0072B2", "#E69F00", "#009E73")) +
+  labs(title = "Distribution of Pathology in Mass", x = "Pathology", y = "Count")
+```
+
+#9.Number of image views
+```{r}
+img_calc<- data.frame(table(CalcTrain_Clean$image_view)) %>% 
+  setNames(c("ImageView", "count"))
+img_calc
+```
+```{r}
+ggplot(img_calc, aes(x = ImageView, y = count)) +
+  geom_bar(stat = "identity", fill = "#996666") +
+  labs(title = "Distribution of Image View in Calcification", x = "Image View", y = "Count") +
+  theme_minimal()
+```
+
+#Number of image views in mass
+```{r}
+img_mass<- data.frame(table(MassTrain_Clean$image_view)) %>% 
+  setNames(c("ImageView", "count"))
+img_mass
+```
+```{r}
+ggplot(img_mass, aes(x = ImageView, y = count)) +
+  geom_bar(stat = "identity", fill = "#CC6666") +
+  labs(title = "Distribution of Image View in Mass", x = "Image View", y = "Count") +
+  theme_minimal()
+```
+```{r}
+#Correlation analysis
+# Select only the numerical variables
+numerical_vars <- CalcTrain_Clean %>% 
+  select_if(is.numeric)
+
+# Perform correlation analysis
+correlation_matrix <- cor(numerical_vars)
+
+# Print the correlation matrix
+print(correlation_matrix)
+
+```
+```{r}
+cor_matrix <- cor(CalcTrain_Clean[, c("breast_density", "abnormality_id", "assessment", "subtlety")])
+
+ggcorrplot(cor_matrix, 
+           hc.order = TRUE, 
+           type = "lower",
+           lab = TRUE)
+
+```
+
+
+#To predict  pathology feature against other features in Calcification
+
+```{r}
+set.seed(101)
+```
+
+
+```{r}
+features <- c("breast_density", "left_or_right_breast", "image_view", 
+              "abnormality_type", "calc_type", "calc_distribution", 
+              "assessment", "subtlety")
+target <- "pathology"
+```
+
+```{r}
+train_data <- CalcTrain_Clean[, c(features, target)]
+test_data <- CalcTest_Clean[, c(features, target)]
+```
+
+
+#Train the classification algorithm using the randomForest() function
+```{r}
+Calc_rf <- randomForest(pathology ~ ., data = train_data)
+Calc_rf
+```
+#Converting  categorical variables to factors with the same levels in train and test datasets
+```{r}
+for (var in features) {
+  if (is.factor(train_data[[var]])) {
+    levels(test_data[[var]]) <- levels(train_data[[var]])
+    levels(train_data[[var]]) <- levels(test_data[[var]])
+  }
+}
+```
+
+Predict the pathology for the test dataset 
+```{r}
+Calc_pred <- predict(Calc_rf, data = test_data)
+
+```
+Evaluate the performance of the model by calculating the accuracy, sensitivity, specificity, and F1 score 
+```{r}
+cm <- confusionMatrix(Calc_pred, train_data$pathology)
+cm
+
+```
+```{r}
+accuracy <- cm$overall['Accuracy']
+print(accuracy)
+```
+#Variable Importance
+
+```{r}
+importance <-  importance(Calc_rf)
+print(importance)
+varImportance <- data.frame(Variables = row.names(importance))
+rankImportance <- varImportance%>%mutate(Rank=paste(dense_rank(desc(importance))))
+```
+```{r}
+ggplot(rankImportance,aes(x=reorder(Variables,importance),
+ y=importance,fill=importance))+ 
+ geom_bar(stat="identity") + 
+ geom_text(aes(x = Variables, y = 0.5, label = Rank),
+ hjust=0, vjust=0.55, size = 4, colour = "white") +
+ labs(x = "Variables") +
+ coord_flip() + 
+ theme_classic()
+```
+
+
+
+#plot the number of nodes for trees
+```{r}
+hist(treesize(Calc_rf),
+     main = "No. of Nodes for the Trees",
+     col = "grey")
+
+```
+
+```{r}
+plot(Calc_pred)
+```
