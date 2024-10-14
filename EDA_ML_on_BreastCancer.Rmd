@@ -13,21 +13,6 @@ Mass and calcifications are two important features of breast cancer that are oft
 
 Exploratory data analysis (EDA) plays a crucial  role in improving the diagnosis. This process can help us to identify the type of cancer present in a patient and also determines the various attributes needed for  developing a predictive model which could aid in early diagnosis and detection of cancer in patients. The predictive factors obtained through EDA can provide valuable information to guide the decision-making process for breast cancer treatment, particularly for patients at an early stage of the disease, where the tumor has not spread or grown aggressively.
 
-##**Related Work**
-
-The following resources were used as a reference in the project
-1. Lee, R., Gimenez, F., Hoogi, A. et al. A curated mammography data set for use in computer-aided detection and diagnosis research. Sci Data 4, 170177 (2017).
-2. Understanding Clinical Mammographic Breast Density Assessment: a Deep Learning Perspective
-Khorshid, Shler & Mohsin Abdulazeez, Adnan & Sallow, Amira. (2021). A Comparative Analysis and Predicting for Breast Cancer Detection Based on Data Mining Models. Asian Journal of Research in Computer Science. 10.9734/AJRCOS/2021/v8i430209. 
-3. Data Visualization https://www.analyticsvidhya.com/blog/2015/07/guide-data-visualization-r/
-  https://r-graph-gallery.com/index.html
-
-4. WHO Cancer https://www.who.int/news-room/fact-sheets/detail/cancer
-5. Exploratory Data Analysis on Breast cancer dataset about Survivability and Recurrence 
-6. Breast Cancer Diagnosis Using Machine Learning Algorithms: A Review by Mahdi Rezaei and Habibollah Danyali
-7. Random Forest classification https://www.r-bloggers.com/2021/04/random-forest-in-r/
-8. Shiny application Shiny - ExPanD: Explore Your Data Interactively
-  https://epirhandbook.com/en/dashboards-with-shiny.html
 
 ##**Initial Questions**
 1. What are the types of abnormalities in cancer?
